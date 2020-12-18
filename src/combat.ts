@@ -24,9 +24,10 @@ import {
   availableChoiceOptions,
   runChoice,
   adv1,
+  use,
 } from 'kolmafia';
-import { $skill, $familiar, $effect } from 'libram/src';
-import { getPropertyInt, myFamiliarWeight, setPropertyInt } from './lib';
+import { $skill, $familiar, $effect, $monster, $item } from 'libram/src';
+import { getPropertyBoolean, getPropertyInt, myFamiliarWeight, setPropertyInt } from './lib';
 
 // multiFight() stolen from Aenimus: https://github.com/Aenimus/aen_cocoabo_farm/blob/master/scripts/aen_combat.ash.
 // Thanks! Licensed under MIT license.
@@ -129,6 +130,7 @@ export class Macro {
 export const MODE_NULL = '';
 export const MODE_CUSTOM = 'custom';
 export const MODE_FIND_MONSTER_THEN = 'findthen';
+export const MODE_FIND_MONSTER_WITH_BANISHES_THEN = 'findbanishthen'; 
 export const MODE_RUN_UNLESS_FREE = 'rununlessfree';
 export const MODE_KILL = 'kill';
 
@@ -171,6 +173,21 @@ function usedBanisherInZone(banished: { [index: string]: Monster }, banisher: st
   return getLocationMonsters(loc)[banished[banisher].name] === undefined;
 }
 
+function canFamiliarRun() {
+  return myFamiliar() === $familiar`Pair of Stomping Boots` || 
+  (myFamiliar() === $familiar`Frumious Bandersnatch` && haveEffect($effect`Ode to Booze`) > 0) &&
+  getPropertyInt('_banderRunaways') < myFamiliarWeight() / 5
+}
+
+function runawayWithTracking() {
+  const banderRunaways = getPropertyInt('_banderRunaways');
+  runaway();
+  if (getPropertyInt('_banderRunaways') === banderRunaways) {
+    print('WARNING: Mafia is not tracking bander runaways correctly.');
+    setPropertyInt('_banderRunaways', banderRunaways + 1);
+  }
+}
+
 export function main(initround: number, foe: Monster) {
   const mode = getMode();
   const loc = myLocation();
@@ -182,7 +199,11 @@ export function main(initround: number, foe: Monster) {
     const banished = banishedMonsters();
     if (foe === desired) {
       setProperty('bcas_combatFound', 'true');
-      new Macro().step(getArg2()).repeatSubmit();
+      if (getArg2() === "kill") {
+        new Macro().kill().submit();
+      } else {
+        new Macro().step(getArg2()).repeatSubmit();
+      }
     } else if (
       myMp() >= 50 &&
       haveSkill($skill`Snokebomb`) &&
@@ -207,6 +228,35 @@ export function main(initround: number, foe: Monster) {
       }
       // Hopefully at this point it comes back to the consult script.
     }
+  } else if (mode === MODE_FIND_MONSTER_WITH_BANISHES_THEN) {
+
+    // TODO: https://kol.coldfront.net/thekolwiki/index.php/Banishing
+    // A
+
+    const monsterId = parseInt(getArg1(), 10);
+    const desired = toMonster(monsterId);
+    const banished = banishedMonsters();
+    if (foe === desired) {
+      setProperty('bcas_combatFound', 'true');
+      if (getArg2() === "kill") {
+        new Macro().kill().submit();
+      } else {
+        new Macro().step(getArg2()).repeatSubmit();
+      }
+    } else if (canFamiliarRun()) {
+      runawayWithTracking();
+    } else if (haveSkill($skill`Reflex Hammer`) && getPropertyInt('_reflexHammerUsed') < 3 && !usedBanisherInZone(banished, 'reflex hammer', loc)) {
+      useSkill(1, $skill`Reflex Hammer`);
+    } else if (myMp() >= 50 && haveSkill($skill`Snokebomb`) && getPropertyInt('_snokebombUsed') < 3 && !usedBanisherInZone(banished, 'snokebomb', loc)) {
+      useSkill(1, $skill`Snokebomb`);
+    }
+    else if (haveSkill($skill`Creepy Grin`) && !getPropertyBoolean('_creepyGrinUsed')) {
+      useSkill(1, $skill`Creepy Grin`);
+    } else if (availableAmount($item`Louder Than Bomb`) > 0 && !usedBanisherInZone(banished, 'louder than bomb', loc)) {
+      use(1, $item`Louder Than Bomb`); 
+    } else {
+      abort("Ran out of banishes!"); 
+    }
   } else if (mode === MODE_RUN_UNLESS_FREE) {
     if (foe.attributes.includes('FREE')) {
       new Macro()
@@ -214,17 +264,8 @@ export function main(initround: number, foe: Monster) {
         .skill($skill`Sing Along`)
         .skill($skill`Saucegeyser`)
         .repeatSubmit();
-    } else if (
-      myFamiliar() === $familiar`Frumious Bandersnatch` &&
-      haveEffect($effect`Ode to Booze`) > 0 &&
-      getPropertyInt('_banderRunaways') < myFamiliarWeight() / 5
-    ) {
-      const banderRunaways = getPropertyInt('_banderRunaways');
-      runaway();
-      if (getPropertyInt('_banderRunaways') === banderRunaways) {
-        print('WARNING: Mafia is not tracking bander runaways correctly.');
-        setPropertyInt('_banderRunaways', banderRunaways + 1);
-      }
+    } else if (canFamiliarRun()) {
+      runawayWithTracking();
     } else if (haveSkill($skill`Reflex Hammer`) && getPropertyInt('_reflexHammerUsed') < 3) {
       useSkill(1, $skill`Reflex Hammer`);
     } else if (myMp() >= 50 && haveSkill($skill`Snokebomb`) && getPropertyInt('_snokebombUsed') < 3) {
@@ -259,7 +300,7 @@ export function adventureKill(loc: Location) {
   adventureMacro(loc, Macro.kill());
 }
 
-function findMonsterThen(loc: Location, foe: Monster, macro: Macro) {
+export function findMonsterThen(loc: Location, foe: Monster, macro: Macro) {
   setMode(MODE_FIND_MONSTER_THEN, foe.id.toString(), macro.toString());
   setProperty('bcas_combatFound', 'false');
   while (getProperty('bcas_combatFound') !== 'true') {

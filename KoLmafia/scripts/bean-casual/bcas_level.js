@@ -3,6 +3,315 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/libram/src/clan.ts":
+/*!*****************************************!*\
+  !*** ./node_modules/libram/src/clan.ts ***!
+  \*****************************************/
+/*! namespace exports */
+/*! export addPlayerToWhitelist [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export get [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getCurrentFax [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getId [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getMeatInCoffer [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getName [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getRanks [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getWhitelist [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export join [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export putMeatInCoffer [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export removePlayerFromWhitelist [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getWhitelist": () => /* binding */ getWhitelist,
+/* harmony export */   "join": () => /* binding */ join,
+/* harmony export */   "get": () => /* binding */ get,
+/* harmony export */   "getId": () => /* binding */ getId,
+/* harmony export */   "getName": () => /* binding */ getName,
+/* harmony export */   "getCurrentFax": () => /* binding */ getCurrentFax,
+/* harmony export */   "getRanks": () => /* binding */ getRanks,
+/* harmony export */   "addPlayerToWhitelist": () => /* binding */ addPlayerToWhitelist,
+/* harmony export */   "removePlayerFromWhitelist": () => /* binding */ removePlayerFromWhitelist,
+/* harmony export */   "getMeatInCoffer": () => /* binding */ getMeatInCoffer,
+/* harmony export */   "putMeatInCoffer": () => /* binding */ putMeatInCoffer
+/* harmony export */ });
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kolmafia */ "kolmafia");
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(kolmafia__WEBPACK_IMPORTED_MODULE_0__);
+Object(function webpackMissingModule() { var e = new Error("Cannot find module 'node-html-parser'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./node_modules/libram/src/utils.ts");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _wrapRegExp(re, groups) { _wrapRegExp = function _wrapRegExp(re, groups) { return new BabelRegExp(re, undefined, groups); }; var _RegExp = _wrapNativeSuper(RegExp); var _super = RegExp.prototype; var _groups = new WeakMap(); function BabelRegExp(re, flags, groups) { var _this = _RegExp.call(this, re, flags); _groups.set(_this, groups || _groups.get(re)); return _this; } _inherits(BabelRegExp, _RegExp); BabelRegExp.prototype.exec = function (str) { var result = _super.exec.call(this, str); if (result) result.groups = buildGroups(result, this); return result; }; BabelRegExp.prototype[Symbol.replace] = function (str, substitution) { if (typeof substitution === "string") { var groups = _groups.get(this); return _super[Symbol.replace].call(this, str, substitution.replace(/\$<([^>]+)>/g, function (_, name) { return "$" + groups[name]; })); } else if (typeof substitution === "function") { var _this = this; return _super[Symbol.replace].call(this, str, function () { var args = []; args.push.apply(args, arguments); if (_typeof(args[args.length - 1]) !== "object") { args.push(buildGroups(args, _this)); } return substitution.apply(this, args); }); } else { return _super[Symbol.replace].call(this, str, substitution); } }; function buildGroups(result, re) { var g = _groups.get(re); return Object.keys(g).reduce(function (groups, name) { groups[name] = result[g[name]]; return groups; }, Object.create(null)); } return _wrapRegExp.apply(this, arguments); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var clanIdCache = {};
+/**
+ * Get list of clans to which the player is whitelisted
+ */
+
+function getWhitelist() {
+  var root = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'node-html-parser'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_signup.php"));
+  return root.querySelectorAll('select[name="whichclan"] option').map(function (option) {
+    return {
+      id: Number.parseInt(option.getAttribute("value")),
+      name: option.text
+    };
+  });
+}
+/**
+ * Join a clan
+ * @param clanIdOrName Clan id or name
+ */
+
+function join(clanIdOrName) {
+  var clanId;
+
+  if (typeof clanIdOrName === "string") {
+    var _clanName = clanIdOrName.toLowerCase();
+
+    if (_clanName === (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getClanName)().toLowerCase()) {
+      return true;
+    }
+
+    if (!(_clanName in clanIdCache)) {
+      var clan = getWhitelist().find(function (c) {
+        return c.name.toLowerCase() === _clanName;
+      });
+      if (!clan) return false;
+      clanIdCache[_clanName] = clan.id;
+    }
+
+    clanId = clanIdCache[_clanName];
+  } else {
+    clanId = clanIdOrName;
+
+    if (clanId === (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getClanId)()) {
+      return true;
+    }
+  }
+
+  var result = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("showclan.php?recruiter=1&whichclan=".concat(clanId, "&pwd&whichclan=").concat(clanId, "&action=joinclan&apply=Apply+to+this+Clan&confirm=on"));
+  return result.includes("clanhalltop.gif");
+}
+/**
+ * Return the name and id of the current clan
+ */
+
+function get() {
+  return {
+    id: (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getClanId)(),
+    name: (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getClanName)()
+  };
+}
+/**
+ * Return the id of the current clan
+ */
+
+function getId() {
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getClanId)();
+}
+/**
+ * Return the name of the current clan
+ */
+
+function getName() {
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getClanName)();
+}
+
+var CLAN_LOG_FAX_PATTERN = /*#__PURE__*/_wrapRegExp(/([0-9]{2}\/[0-9]{2}\/[0-9]{2}, [0-9]{2}:[0-9]{2}(?:AM|PM): )<a (?:(?!>)[\s\S])+>((?:(?!<)[\s\S])+)<\/a>(?: faxed in a (.*?))<br>/, {
+  monster: 3
+});
+/**
+ * Return the monster that is currently in the current clan's fax machine if any
+ */
+
+
+function getCurrentFax() {
+  var logs = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_log.php");
+  var lastFax = logs.match(CLAN_LOG_FAX_PATTERN);
+  if (!lastFax) return null;
+
+  var _lastFax = _slicedToArray(lastFax, 4),
+      monsterName = _lastFax[3];
+
+  if (!monsterName) return null;
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toMonster)(monsterName);
+}
+
+var CLAN_WHITELIST_DEGREE_PATTERN = /*#__PURE__*/_wrapRegExp(/(.*?) \(\xB0([0-9]+)\)/, {
+  name: 1,
+  degree: 2
+});
+/**
+ * List available ranks (name, degree and id) from the current clan
+ */
+
+
+function getRanks() {
+  var root = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'node-html-parser'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_whitelist.php"));
+  return root.querySelectorAll("select[name=level] option").map(function (option) {
+    var match = option.text.match(CLAN_WHITELIST_DEGREE_PATTERN);
+    var id = option.getAttribute("value");
+    if (!match || !id) return null;
+
+    var _match = _slicedToArray(match, 3),
+        name = _match[1],
+        degree = _match[2];
+
+    return {
+      name: name,
+      degree: Number.parseInt(degree),
+      id: Number.parseInt(id)
+    };
+  }).filter(_utils__WEBPACK_IMPORTED_MODULE_2__.notNull);
+}
+
+var toPlayerId = function toPlayerId(player) {
+  return typeof player === "string" ? (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getPlayerId)(player) : player;
+};
+/**
+ * Add a player to the current clan's whitelist.
+ * If the player is already in the whitelist this will change their rank or title.
+ * @param player Player id or name
+ * @param rankName Rank to give the player. If not provided they will be given the lowest rank
+ * @param title Title to give the player. If not provided, will be blank
+ */
+
+
+function addPlayerToWhitelist(player, rankName) {
+  var title = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  var playerId = toPlayerId(player);
+  var ranks = getRanks();
+  var rank = rankName ? ranks.find(function (r) {
+    return r.name === rankName;
+  }) : ranks.sort(function (a, b) {
+    return a.degree - b.degree;
+  })[0];
+  if (!rank) return false;
+  var result = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_whitelist.php?action=add&pwd&addwho=".concat(playerId, "&level=").concat(rank.id, "&title=").concat(title));
+  return result.includes("added to whitelist.") || result.includes("That player is already on the whitelist");
+}
+/**
+ * Remove a player from the current clan's whitelist
+ * @param player Player id or name
+ */
+
+function removePlayerFromWhitelist(player) {
+  var playerId = toPlayerId(player);
+  var result = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_whitelist.php?action=updatewl&pwd&who=".concat(playerId, "&remove=Remove"));
+  return result.includes("Whitelist updated.");
+}
+/**
+ * Return the amount of meat in the current clan's coffer.
+ */
+
+function getMeatInCoffer() {
+  var page = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_stash.php");
+
+  var _ref = page.match(/Your <b>Clan Coffer<\/b> contains ([\d,]+) Meat./) || ["0", "0"],
+      _ref2 = _slicedToArray(_ref, 2),
+      meat = _ref2[1];
+
+  return (0,_utils__WEBPACK_IMPORTED_MODULE_2__.parseNumber)(meat);
+}
+/**
+ * Add the given amount of meat to the current clan's coffer.
+ * @param amount Amount of meat to put in coffer
+ */
+
+function putMeatInCoffer(amount) {
+  var result = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.visitUrl)("clan_stash.php?pwd&action=contribute&howmuch=".concat(amount));
+  return result.includes("You contributed");
+}
+
+/***/ }),
+
+/***/ "./node_modules/libram/src/console.ts":
+/*!********************************************!*\
+  !*** ./node_modules/libram/src/console.ts ***!
+  \********************************************/
+/*! namespace exports */
+/*! export error [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export info [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export log [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export trace [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export warn [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "log": () => /* binding */ log,
+/* harmony export */   "info": () => /* binding */ info,
+/* harmony export */   "warn": () => /* binding */ warn,
+/* harmony export */   "error": () => /* binding */ error,
+/* harmony export */   "trace": () => /* binding */ trace
+/* harmony export */ });
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kolmafia */ "kolmafia");
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(kolmafia__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var logColor = function logColor(color) {
+  return function () {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var output = args.map(function (x) {
+      return x.toString();
+    }).join(" ");
+
+    if (color) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)(output, color);
+    } else {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)(output);
+    }
+  };
+};
+
+var log = logColor();
+var info = logColor("blue");
+var warn = logColor("red");
+var error = logColor("red");
+var trace = function trace() {};
+
+/***/ }),
+
 /***/ "./node_modules/libram/src/index.ts":
 /*!******************************************!*\
   !*** ./node_modules/libram/src/index.ts ***!
@@ -38,6 +347,37 @@
 /*! export $stats [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/template-string.ts .$stats */
 /*! export $thrall [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/template-string.ts .$thrall */
 /*! export $thralls [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/template-string.ts .$thralls */
+/*! export clan [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/clan.ts */
+/*!   export addPlayerToWhitelist [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export get [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export getCurrentFax [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export getId [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export getMeatInCoffer [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export getName [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export getRanks [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export getWhitelist [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export join [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export putMeatInCoffer [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export removePlayerFromWhitelist [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export console [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/console.ts */
+/*!   export error [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export info [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export log [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export trace [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export warn [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export getActiveEffects [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getActiveEffects */
+/*! export getActiveSongs [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getActiveSongs */
+/*! export getMonsterLocations [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getMonsterLocations */
+/*! export getRemainingLiver [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getRemainingLiver */
+/*! export getRemainingSpleen [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getRemainingSpleen */
+/*! export getRemainingStomach [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getRemainingStomach */
+/*! export getSongCount [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getSongCount */
+/*! export getSongLimit [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .getSongLimit */
+/*! export have [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .have */
+/*! export haveInCampsite [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .haveInCampsite */
+/*! export isSong [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/libram/src/lib.ts .isSong */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -73,10 +413,200 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "$stat": () => /* reexport safe */ _template_string__WEBPACK_IMPORTED_MODULE_0__.$stat,
 /* harmony export */   "$stats": () => /* reexport safe */ _template_string__WEBPACK_IMPORTED_MODULE_0__.$stats,
 /* harmony export */   "$thrall": () => /* reexport safe */ _template_string__WEBPACK_IMPORTED_MODULE_0__.$thrall,
-/* harmony export */   "$thralls": () => /* reexport safe */ _template_string__WEBPACK_IMPORTED_MODULE_0__.$thralls
+/* harmony export */   "$thralls": () => /* reexport safe */ _template_string__WEBPACK_IMPORTED_MODULE_0__.$thralls,
+/* harmony export */   "getActiveEffects": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getActiveEffects,
+/* harmony export */   "getActiveSongs": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getActiveSongs,
+/* harmony export */   "getMonsterLocations": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getMonsterLocations,
+/* harmony export */   "getRemainingLiver": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getRemainingLiver,
+/* harmony export */   "getRemainingSpleen": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getRemainingSpleen,
+/* harmony export */   "getRemainingStomach": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getRemainingStomach,
+/* harmony export */   "getSongCount": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getSongCount,
+/* harmony export */   "getSongLimit": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.getSongLimit,
+/* harmony export */   "have": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.have,
+/* harmony export */   "haveInCampsite": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.haveInCampsite,
+/* harmony export */   "isSong": () => /* reexport safe */ _lib__WEBPACK_IMPORTED_MODULE_1__.isSong,
+/* harmony export */   "clan": () => /* reexport module object */ _clan__WEBPACK_IMPORTED_MODULE_2__,
+/* harmony export */   "console": () => /* reexport module object */ _console__WEBPACK_IMPORTED_MODULE_3__
 /* harmony export */ });
 /* harmony import */ var _template_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template-string */ "./node_modules/libram/src/template-string.ts");
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib */ "./node_modules/libram/src/lib.ts");
+/* harmony import */ var _clan__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./clan */ "./node_modules/libram/src/clan.ts");
+/* harmony import */ var _console__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./console */ "./node_modules/libram/src/console.ts");
 
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/libram/src/lib.ts":
+/*!****************************************!*\
+  !*** ./node_modules/libram/src/lib.ts ***!
+  \****************************************/
+/*! namespace exports */
+/*! export getActiveEffects [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getActiveSongs [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getMonsterLocations [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getRemainingLiver [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getRemainingSpleen [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getRemainingStomach [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getSongCount [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getSongLimit [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export have [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export haveInCampsite [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export isSong [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getSongLimit": () => /* binding */ getSongLimit,
+/* harmony export */   "isSong": () => /* binding */ isSong,
+/* harmony export */   "getActiveEffects": () => /* binding */ getActiveEffects,
+/* harmony export */   "getActiveSongs": () => /* binding */ getActiveSongs,
+/* harmony export */   "getSongCount": () => /* binding */ getSongCount,
+/* harmony export */   "getMonsterLocations": () => /* binding */ getMonsterLocations,
+/* harmony export */   "getRemainingLiver": () => /* binding */ getRemainingLiver,
+/* harmony export */   "getRemainingStomach": () => /* binding */ getRemainingStomach,
+/* harmony export */   "getRemainingSpleen": () => /* binding */ getRemainingSpleen,
+/* harmony export */   "have": () => /* binding */ have,
+/* harmony export */   "haveInCampsite": () => /* binding */ haveInCampsite
+/* harmony export */ });
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kolmafia */ "kolmafia");
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(kolmafia__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _template_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./template-string */ "./node_modules/libram/src/template-string.ts");
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["Accordion Thief"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+/**
+ * Returns the current maximum Accordion Thief songs the player can have in their head
+ */
+
+function getSongLimit() {
+  return 3 + ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.booleanModifier)("Four Songs") ? 1 : 0) + (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.numericModifier)("Additional Song");
+}
+/**
+ * Return whether the Skill or Effect provided is an Accordion Thief song
+ * @param skillOrEffect The Skill or Effect
+ */
+
+function isSong(skillOrEffect) {
+  var skill = skillOrEffect instanceof Effect ? (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toSkill)(skillOrEffect) : skillOrEffect;
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toInt)(skill["class"]) === (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toInt)((0,_template_string__WEBPACK_IMPORTED_MODULE_1__.$class)(_templateObject())) && skill.buff;
+}
+/**
+ * List all active Effects
+ */
+
+function getActiveEffects() {
+  return Object.keys((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myEffects)()).map(function (e) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toEffect)(e);
+  });
+}
+/**
+ * List currently active Accordion Thief songs
+ */
+
+function getActiveSongs() {
+  return getActiveEffects().filter(isSong);
+}
+/**
+ * List number of active Accordion Thief songs
+ */
+
+function getSongCount() {
+  return getActiveSongs().length;
+}
+/**
+ * Return the locations in which the given monster can be encountered naturally
+ * @param monster Monster to find
+ */
+
+function getMonsterLocations(monster) {
+  return Location.all().filter(function (location) {
+    return monster.name in (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.appearanceRates)(location);
+  });
+}
+/**
+ * Return the player's remaining liver space
+ */
+
+function getRemainingLiver() {
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.inebrietyLimit)() - (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myInebriety)();
+}
+/**
+ * Return the player's remaining stomach space
+ */
+
+function getRemainingStomach() {
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.fullnessLimit)() - (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myFullness)();
+}
+/**
+ * Return the player's remaining spleen space
+ */
+
+function getRemainingSpleen() {
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.spleenLimit)() - (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.mySpleenUse)();
+}
+/**
+ * Return whether the player "has" any entity which one could feasibly "have".
+ */
+
+function have(thing) {
+  var quantity = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  if (thing instanceof Effect) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveEffect)(thing) >= quantity;
+  }
+
+  if (thing instanceof Familiar) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveFamiliar)(thing);
+  }
+
+  if (thing instanceof Item) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.availableAmount)(thing) >= quantity;
+  }
+
+  if (thing instanceof Servant) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveServant)(thing);
+  }
+
+  if (thing instanceof Skill) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)(thing);
+  }
+
+  if (thing instanceof Thrall) {
+    var thrall = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myThrall)();
+    return thrall.id === thing.id && thrall.level >= quantity;
+  }
+
+  return false;
+}
+/**
+ * Return whether an item is in the player's campsite
+ */
+
+function haveInCampsite(item) {
+  return Object.keys((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getCampground)()).map(function (i) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toItem)(i);
+  }).find(function (i) {
+    return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toInt)(i) === (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toInt)(item);
+  }) !== undefined;
+}
 
 /***/ }),
 
@@ -357,6 +887,31 @@ var $thralls = createPluralConstant(Thrall);
 
 /***/ }),
 
+/***/ "./node_modules/libram/src/utils.ts":
+/*!******************************************!*\
+  !*** ./node_modules/libram/src/utils.ts ***!
+  \******************************************/
+/*! namespace exports */
+/*! export notNull [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export parseNumber [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "notNull": () => /* binding */ notNull,
+/* harmony export */   "parseNumber": () => /* binding */ parseNumber
+/* harmony export */ });
+function notNull(value) {
+  return value !== null;
+}
+function parseNumber(n) {
+  return Number.parseInt(n.replace(/,/g, ""));
+}
+
+/***/ }),
+
 /***/ "./src/combat.ts":
 /*!***********************!*\
   !*** ./src/combat.ts ***!
@@ -364,6 +919,7 @@ var $thralls = createPluralConstant(Thrall);
 /*! namespace exports */
 /*! export MODE_CUSTOM [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export MODE_FIND_MONSTER_THEN [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
+/*! export MODE_FIND_MONSTER_WITH_BANISHES_THEN [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export MODE_KILL [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export MODE_NULL [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export MODE_RUN_UNLESS_FREE [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
@@ -373,6 +929,7 @@ var $thralls = createPluralConstant(Thrall);
 /*! export adventureMacro [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export adventureRunUnlessFree [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export findMonsterSaberYr [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
+/*! export findMonsterThen [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export getArg1 [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export getArg2 [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
 /*! export getMode [provided] [maybe used in bcas_combat (runtime-defined)] [usage prevents renaming] */
@@ -389,6 +946,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "MODE_NULL": () => /* binding */ MODE_NULL,
 /* harmony export */   "MODE_CUSTOM": () => /* binding */ MODE_CUSTOM,
 /* harmony export */   "MODE_FIND_MONSTER_THEN": () => /* binding */ MODE_FIND_MONSTER_THEN,
+/* harmony export */   "MODE_FIND_MONSTER_WITH_BANISHES_THEN": () => /* binding */ MODE_FIND_MONSTER_WITH_BANISHES_THEN,
 /* harmony export */   "MODE_RUN_UNLESS_FREE": () => /* binding */ MODE_RUN_UNLESS_FREE,
 /* harmony export */   "MODE_KILL": () => /* binding */ MODE_KILL,
 /* harmony export */   "setMode": () => /* binding */ setMode,
@@ -399,6 +957,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "saberYr": () => /* binding */ saberYr,
 /* harmony export */   "adventureMacro": () => /* binding */ adventureMacro,
 /* harmony export */   "adventureKill": () => /* binding */ adventureKill,
+/* harmony export */   "findMonsterThen": () => /* binding */ findMonsterThen,
 /* harmony export */   "findMonsterSaberYr": () => /* binding */ findMonsterSaberYr,
 /* harmony export */   "adventureCopy": () => /* binding */ adventureCopy,
 /* harmony export */   "adventureRunUnlessFree": () => /* binding */ adventureRunUnlessFree
@@ -407,8 +966,98 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(kolmafia__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var libram_src__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! libram/src */ "./node_modules/libram/src/index.ts");
 /* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lib */ "./src/lib.ts");
-function _templateObject20() {
+function _templateObject29() {
   var data = _taggedTemplateLiteral(["Lecture on Relativity"]);
+
+  _templateObject29 = function _templateObject29() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject28() {
+  var data = _taggedTemplateLiteral(["Use the Force"]);
+
+  _templateObject28 = function _templateObject28() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject27() {
+  var data = _taggedTemplateLiteral(["Snokebomb"]);
+
+  _templateObject27 = function _templateObject27() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject26() {
+  var data = _taggedTemplateLiteral(["Snokebomb"]);
+
+  _templateObject26 = function _templateObject26() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject25() {
+  var data = _taggedTemplateLiteral(["Reflex Hammer"]);
+
+  _templateObject25 = function _templateObject25() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject24() {
+  var data = _taggedTemplateLiteral(["Reflex Hammer"]);
+
+  _templateObject24 = function _templateObject24() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject23() {
+  var data = _taggedTemplateLiteral(["Saucegeyser"]);
+
+  _templateObject23 = function _templateObject23() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject22() {
+  var data = _taggedTemplateLiteral(["Sing Along"]);
+
+  _templateObject22 = function _templateObject22() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject21() {
+  var data = _taggedTemplateLiteral(["Curse of Weaksauce"]);
+
+  _templateObject21 = function _templateObject21() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject20() {
+  var data = _taggedTemplateLiteral(["Louder Than Bomb"]);
 
   _templateObject20 = function _templateObject20() {
     return data;
@@ -418,7 +1067,7 @@ function _templateObject20() {
 }
 
 function _templateObject19() {
-  var data = _taggedTemplateLiteral(["Use the Force"]);
+  var data = _taggedTemplateLiteral(["Louder Than Bomb"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -428,7 +1077,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["Snokebomb"]);
+  var data = _taggedTemplateLiteral(["Creepy Grin"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -438,7 +1087,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["Snokebomb"]);
+  var data = _taggedTemplateLiteral(["Creepy Grin"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -448,7 +1097,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["Reflex Hammer"]);
+  var data = _taggedTemplateLiteral(["Snokebomb"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -458,7 +1107,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["Reflex Hammer"]);
+  var data = _taggedTemplateLiteral(["Snokebomb"]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -468,7 +1117,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["Ode to Booze"]);
+  var data = _taggedTemplateLiteral(["Reflex Hammer"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -478,7 +1127,7 @@ function _templateObject14() {
 }
 
 function _templateObject13() {
-  var data = _taggedTemplateLiteral(["Frumious Bandersnatch"]);
+  var data = _taggedTemplateLiteral(["Reflex Hammer"]);
 
   _templateObject13 = function _templateObject13() {
     return data;
@@ -488,7 +1137,7 @@ function _templateObject13() {
 }
 
 function _templateObject12() {
-  var data = _taggedTemplateLiteral(["Saucegeyser"]);
+  var data = _taggedTemplateLiteral(["CHEAT CODE: Replace Enemy"]);
 
   _templateObject12 = function _templateObject12() {
     return data;
@@ -498,7 +1147,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["Sing Along"]);
+  var data = _taggedTemplateLiteral(["CHEAT CODE: Replace Enemy"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
@@ -508,7 +1157,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["Curse of Weaksauce"]);
+  var data = _taggedTemplateLiteral(["Macrometeorite"]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -518,7 +1167,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["CHEAT CODE: Replace Enemy"]);
+  var data = _taggedTemplateLiteral(["Macrometeorite"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -528,7 +1177,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["CHEAT CODE: Replace Enemy"]);
+  var data = _taggedTemplateLiteral(["Snokebomb"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -538,7 +1187,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["Macrometeorite"]);
+  var data = _taggedTemplateLiteral(["Snokebomb"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -548,7 +1197,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["Macrometeorite"]);
+  var data = _taggedTemplateLiteral(["Ode to Booze"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -558,7 +1207,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["Snokebomb"]);
+  var data = _taggedTemplateLiteral(["Frumious Bandersnatch"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -568,7 +1217,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["Snokebomb"]);
+  var data = _taggedTemplateLiteral(["Pair of Stomping Boots"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -777,6 +1426,7 @@ var Macro = /*#__PURE__*/function () {
 var MODE_NULL = '';
 var MODE_CUSTOM = 'custom';
 var MODE_FIND_MONSTER_THEN = 'findthen';
+var MODE_FIND_MONSTER_WITH_BANISHES_THEN = 'findbanishthen';
 var MODE_RUN_UNLESS_FREE = 'rununlessfree';
 var MODE_KILL = 'kill';
 function setMode(mode) {
@@ -819,6 +1469,20 @@ function usedBanisherInZone(banished, banisher, loc) {
   return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.getLocationMonsters)(loc)[banished[banisher].name] === undefined;
 }
 
+function canFamiliarRun() {
+  return (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myFamiliar)() === (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$familiar)(_templateObject4()) || (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myFamiliar)() === (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$familiar)(_templateObject5()) && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveEffect)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$effect)(_templateObject6())) > 0 && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_banderRunaways') < (0,_lib__WEBPACK_IMPORTED_MODULE_2__.myFamiliarWeight)() / 5;
+}
+
+function runawayWithTracking() {
+  var banderRunaways = (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_banderRunaways');
+  (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.runaway)();
+
+  if ((0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_banderRunaways') === banderRunaways) {
+    (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)('WARNING: Mafia is not tracking bander runaways correctly.');
+    (0,_lib__WEBPACK_IMPORTED_MODULE_2__.setPropertyInt)('_banderRunaways', banderRunaways + 1);
+  }
+}
+
 function main(initround, foe) {
   var mode = getMode();
   var loc = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myLocation)();
@@ -832,16 +1496,21 @@ function main(initround, foe) {
 
     if (foe === desired) {
       (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.setProperty)('bcas_combatFound', 'true');
-      new Macro().step(getArg2()).repeatSubmit();
-    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myMp)() >= 50 && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject4())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_snokebombUsed') < 3 && !usedBanisherInZone(banished, 'snokebomb', loc)) {
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject5()));
+
+      if (getArg2() === "kill") {
+        new Macro().kill().submit();
+      } else {
+        new Macro().step(getArg2()).repeatSubmit();
+      }
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myMp)() >= 50 && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject7())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_snokebombUsed') < 3 && !usedBanisherInZone(banished, 'snokebomb', loc)) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject8()));
       /* } else if (haveSkill($skill`Reflex Hammer`) && getPropertyInt("ReflexHammerUsed") < 3 && !usedBanisherInZone(banished, "Reflex Hammer", loc)) {
           useSkill(1, $skill`Reflex Hammer`); */
-    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject6())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_macrometeoriteUses') < 10) {
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject7()));
-    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject8())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_powerfulGloveBatteryPowerUsed') <= 80) {
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject9())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_macrometeoriteUses') < 10) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject10()));
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject11())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_powerfulGloveBatteryPowerUsed') <= 80) {
       var originalBattery = (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_powerfulGloveBatteryPowerUsed');
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject9()));
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject12()));
       var newBattery = (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_powerfulGloveBatteryPowerUsed');
 
       if (newBattery === originalBattery) {
@@ -850,21 +1519,45 @@ function main(initround, foe) {
       } // Hopefully at this point it comes back to the consult script.
 
     }
+  } else if (mode === MODE_FIND_MONSTER_WITH_BANISHES_THEN) {
+    // TODO: https://kol.coldfront.net/thekolwiki/index.php/Banishing
+    // A
+    var _monsterId = parseInt(getArg1(), 10);
+
+    var _desired = (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.toMonster)(_monsterId);
+
+    var _banished = banishedMonsters();
+
+    if (foe === _desired) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.setProperty)('bcas_combatFound', 'true');
+
+      if (getArg2() === "kill") {
+        new Macro().kill().submit();
+      } else {
+        new Macro().step(getArg2()).repeatSubmit();
+      }
+    } else if (canFamiliarRun()) {
+      runawayWithTracking();
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject13())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_reflexHammerUsed') < 3 && !usedBanisherInZone(_banished, 'reflex hammer', loc)) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject14()));
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myMp)() >= 50 && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject15())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_snokebombUsed') < 3 && !usedBanisherInZone(_banished, 'snokebomb', loc)) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject16()));
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject17())) && !(0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyBoolean)('_creepyGrinUsed')) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject18()));
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.availableAmount)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$item)(_templateObject19())) > 0 && !usedBanisherInZone(_banished, 'louder than bomb', loc)) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.use)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$item)(_templateObject20()));
+    } else {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.abort)("Ran out of banishes!");
+    }
   } else if (mode === MODE_RUN_UNLESS_FREE) {
     if (foe.attributes.includes('FREE')) {
-      new Macro().skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject10())).skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject11())).skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject12())).repeatSubmit();
-    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myFamiliar)() === (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$familiar)(_templateObject13()) && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveEffect)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$effect)(_templateObject14())) > 0 && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_banderRunaways') < (0,_lib__WEBPACK_IMPORTED_MODULE_2__.myFamiliarWeight)() / 5) {
-      var banderRunaways = (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_banderRunaways');
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.runaway)();
-
-      if ((0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_banderRunaways') === banderRunaways) {
-        (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)('WARNING: Mafia is not tracking bander runaways correctly.');
-        (0,_lib__WEBPACK_IMPORTED_MODULE_2__.setPropertyInt)('_banderRunaways', banderRunaways + 1);
-      }
-    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject15())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_reflexHammerUsed') < 3) {
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject16()));
-    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myMp)() >= 50 && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject17())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_snokebombUsed') < 3) {
-      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject18()));
+      new Macro().skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject21())).skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject22())).skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject23())).repeatSubmit();
+    } else if (canFamiliarRun()) {
+      runawayWithTracking();
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject24())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_reflexHammerUsed') < 3) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject25()));
+    } else if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myMp)() >= 50 && (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.haveSkill)((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject26())) && (0,_lib__WEBPACK_IMPORTED_MODULE_2__.getPropertyInt)('_snokebombUsed') < 3) {
+      (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.useSkill)(1, (0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject27()));
     } else {
       // non-free, whatever
       (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.runaway)();
@@ -892,7 +1585,6 @@ function adventureMacro(loc, macro) {
 function adventureKill(loc) {
   adventureMacro(loc, Macro.kill());
 }
-
 function findMonsterThen(loc, foe, macro) {
   setMode(MODE_FIND_MONSTER_THEN, foe.id.toString(), macro.toString());
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.setProperty)('bcas_combatFound', 'false');
@@ -903,13 +1595,12 @@ function findMonsterThen(loc, foe, macro) {
 
   setMode(MODE_NULL, '');
 }
-
 function findMonsterSaberYr(loc, foe) {
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.setProperty)('choiceAdventure1387', '3');
-  findMonsterThen(loc, foe, Macro.skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject19())));
+  findMonsterThen(loc, foe, Macro.skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject28())));
 }
 function adventureCopy(loc, foe) {
-  setMode(MODE_CUSTOM, Macro.mIf("!monstername \"".concat(foe.name), 'abort').skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject20())).kill().toString());
+  setMode(MODE_CUSTOM, Macro.mIf("!monstername \"".concat(foe.name), 'abort').skill((0,libram_src__WEBPACK_IMPORTED_MODULE_1__.$skill)(_templateObject29())).kill().toString());
   (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.adv1)(loc, -1, '');
   setMode(MODE_NULL, '');
 }

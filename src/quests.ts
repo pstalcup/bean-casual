@@ -1,5 +1,5 @@
 import { canAdv } from 'canadv.ash';
-import { adventureMacro, adventureRunUnlessFree, adventureKill, Macro } from './combat';
+import { adventureMacro, adventureRunUnlessFree, adventureKill, Macro, findMonsterThen } from './combat';
 import * as Combat from './combat';
 
 import {
@@ -30,8 +30,9 @@ import {
   runCombat,
   setProperty,
   adv1,
+  toString,
 } from 'kolmafia';
-import { $item, $skill, $location, $familiar, $effect } from 'libram/src';
+import { $item, $skill, $location, $familiar, $effect, $monster } from 'libram/src';
 
 export function moodBaseline() {
   if (myMp() < 200) {
@@ -64,7 +65,7 @@ export function moodNoncombat() {
   if (getPropertyBoolean('horseryAvailable') && getProperty('_horsery') !== 'dark horse') cliExecute('horsery dark');
 }
 
-export function billiards() {
+export function spookyraven1() {
   if (!canAdv($location`The Haunted Kitchen`)) {
     use(1, $item`telegram from Lady Spookyraven`);
   }
@@ -93,6 +94,20 @@ export function billiards() {
     maximizeCached('-combat');
     adventureMacro($location`The Haunted Billiards Room`, Macro.skill($skill`Saucestorm`));
   }
+
+  while (availableAmount(Item.get(7303 /* Lady Spookyraven's Necklace */)) === 0) {
+    setChoice(894, 1); // Lights Out in the Library
+    setChoice(888, 4); // Take a Look, it's in a Book! (Rise)
+    setChoice(889, 5); // Take a Look, it's in a Book! (Fall)
+    setChoice(163, 4); // Melvil Dewey Would Be Ashamed
+
+    Combat.setMode(Combat.MODE_FIND_MONSTER_THEN, $monster`Writing desk`.name, "kill");
+    adv1($location`The Haunted Library`, -1, "");
+    Combat.setMode(Combat.MODE_NULL); 
+  }
+
+  // Find out hte lady spookyraven URL
+  visitUrl()
 }
 
 export function war() {
@@ -204,5 +219,12 @@ export function shen() {
   if (getStep('questL11Shen') < 1) {
     maximizeCached('');
     adventureRunUnlessFree($location`The Copperhead Club`);
+  }
+}
+
+export function bossBat() {
+  while (getStep('questL5') < 4) {
+    use($item`sonar-in-a-biscuit`);
+    findMonsterThen($location`The Boss Bat's Lair`, $monster`Boss Bat`, Macro.kill());
   }
 }

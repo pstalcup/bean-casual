@@ -15,7 +15,7 @@ import {
 import { intro } from './intro';
 import { level } from './level';
 import { getPropertyBoolean } from './lib';
-import { billiards, war, dailyDungeon, ores, bridge, aboo, blackForest, shen } from './quests';
+import { war, dailyDungeon, ores, bridge, aboo, blackForest, shen, spookyraven1 } from './quests';
 
 export function main() {
   setProperty('bcas_objective', '');
@@ -50,7 +50,7 @@ export function main() {
     setProperty('bcas_lastStockedUp', `${myAscensions()}`);
   }
 
-  billiards();
+  spookyraven1();
 
   if (myInebriety() <= 5 && myFullness() <= 0) {
     if (dietScript === '') {
